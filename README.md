@@ -19,4 +19,4 @@ Fase de planejamento. Nenhum código ainda. O roadmap e as decisões em aberto e
 | Pagamentos / PIX | Asaas |
 | Versão bíblica | Almeida Revista e Atualizada (licença SBB a negociar) |
 | Preço | A definir após o piloto |
-| Piloto | Assembleia de Deus |
+| Piloto | ADEMAN — Assembleia de Deus em Mangueiras (matriz + 1 congregação) |

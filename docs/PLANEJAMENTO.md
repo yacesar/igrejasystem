@@ -421,7 +421,7 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 - Comunicação: WhatsApp + push + e-mail segmentados.
 - PWA do membro: agenda, doar, perfil, pedidos de oração.
 - Painel do administrador.
-- **Piloto com 3–5 igrejas reais** (de tamanhos diferentes).
+- **Piloto com a ADEMAN** (matriz + 1 congregação); em seguida, 2–4 igrejas adicionais de tamanhos e tradições diferentes.
 
 ### Fase 2 — Vida da igreja (semanas 11–18)
 - Ministérios e escalas com trocas.
@@ -445,7 +445,7 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 - Marketplace de modelos (documentos, trilhas, materiais) entre igrejas.
 
 ### Critérios de saída do MVP
-- 3 igrejas piloto usando semanalmente por 4 semanas.
+- ADEMAN (matriz e congregação) usando semanalmente por 4 semanas, com relatório de EBD e tesouraria fechados pelo sistema.
 - 80% dos PIX conciliados sem toque humano.
 - Secretaria emite documentos sem suporte.
 - Nenhum incidente de permissão (dados sensíveis vistos por quem não devia).
@@ -476,12 +476,11 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 | 3 | PSP (PIX, boleto, cartão) | **Asaas** | Subcontas por igreja/congregação, split sede ↔ congregações, webhooks assinados; sandbox desde a Fase 0 |
 | 4 | Versão bíblica | **Almeida Revista e Atualizada (ARA)** | Texto protegido por direitos autorais da SBB: **negociar licença de uso em software** antes da Fase 3. Até então, usar versão de domínio público como texto provisório |
 | 5 | Faixas de preço | **A definir** | Decidir após o piloto, com dados reais de uso e custo por igreja. Hipótese de trabalho na seção 10 |
-| 6 | Igrejas piloto | **Assembleia de Deus** | Ver seção 14: implicações de vocabulário, estrutura e fluxos |
+| 6 | Igreja piloto | **ADEMAN — Assembleia de Deus em Mangueiras** | Escopo inicial: **matriz + 1 congregação**. Ver seção 14 |
 
 ### Decisões ainda abertas
 - Faixas de preço e política do plano gratuito (item 5).
-- Qual(is) ministério(s)/campo(s) da Assembleia de Deus participará(ão) do piloto, e quantas congregações.
-- Modelo de contrato para o piloto (gratuito por 6 meses em troca de feedback semanal é a sugestão).
+- Modelo de acordo do piloto com a ADEMAN (sugestão: uso gratuito por 6 meses em troca de feedback semanal).
 
 ---
 
@@ -523,7 +522,21 @@ A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com
 - Relatório mensal padrão de tesouraria da congregação para a sede (formato impresso e digital).
 - Campanhas comuns pré-criadas: construção, missões, congressos de departamentos.
 
-### 14.5 Fluxos que o piloto vai validar primeiro
+### 14.5 Igreja piloto: ADEMAN
+
+| Item | Definição |
+|---|---|
+| Igreja | **ADEMAN — Assembleia de Deus em Mangueiras** |
+| Escopo inicial | **Matriz (sede) + 1 congregação** |
+| Modelo no sistema | 1 `Church` (ADEMAN) · 2 `Campus` (matriz marcada como sede; congregação vinculada à matriz) · setores desativados nesta fase |
+| Papéis a provisionar | Pastor presidente (admin + pastor no campo), dirigente da congregação, secretaria geral, tesouraria geral, tesoureiro da congregação, secretário(a) de EBD por congregação, professores, obreiros, membros |
+| Finanças | Duas subcontas Asaas (matriz e congregação) ou uma conta com split; repasse congregação → matriz configurado em percentual |
+| Dados iniciais | Importar rol de membros (matriz e congregação), cargos de obreiros, classes de EBD e plano de contas atual |
+| Objetivo da fase | Validar os fluxos abaixo com dois níveis reais (sede ↔ congregação) antes de abrir para mais congregações |
+
+O escopo pequeno é intencional: dois campi já exercitam toda a hierarquia, as permissões por escopo e o repasse financeiro, sem o volume de uma rede grande. Novas congregações da ADEMAN entram como `Campus` adicionais sem mudança de código.
+
+### 14.6 Fluxos que o piloto vai validar primeiro
 1. Cadastro do rol de membros e emissão de cartão de membro e carta de mudança (transferência entre congregações do mesmo campo e para outros ministérios).
 2. Relatório de EBD dominical pelo celular do secretário de classe.
 3. Dízimos e ofertas por PIX identificado na congregação, com repasse automático à sede.
@@ -531,7 +544,7 @@ A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com
 5. Escala de dirigentes de culto e de louvor.
 6. Relatório estatístico anual para a convenção.
 
-### 14.6 Cuidados
+### 14.7 Cuidados
 - Diversidade interna: ministérios diferentes da AD têm costumes diferentes (uso de instrumentos, vestuário, estrutura de departamentos). Nada disso vai para o código; tudo é configuração.
 - Grande parte dos dirigentes de congregação tem pouco tempo e usa só o celular: o fluxo do dirigente (presença, oferta, relatório de EBD, pedido de oração) tem de caber inteiro na barra inferior do app.
 - Linguagem e imagética do produto devem ser sóbrias e respeitosas, evitando estética "startup" que soe estranha ao público.
@@ -544,7 +557,7 @@ A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com
 2. Criar o monorepo com a estrutura da seção 7.3, CI e design tokens.
 3. Criar projeto Supabase (dev) e conta sandbox Asaas; configurar webhooks assinados.
 4. Iniciar contato com a SBB para licença da ARA em software.
-5. Desenhar os fluxos-chave da seção 6.3 e os seis fluxos do piloto (14.5), mobile primeiro.
+5. Desenhar os fluxos-chave da seção 6.3 e os seis fluxos do piloto (14.6), mobile primeiro.
 6. Modelar e migrar o esquema de **Pessoas** (com hierarquia campo → setor → congregação) e **Finanças** (com repasse).
-7. Definir o ministério/campo da Assembleia de Deus para o piloto, número de congregações e termos do acordo.
+7. Formalizar o acordo de piloto com a ADEMAN (matriz + 1 congregação) e levantar os dados iniciais: rol de membros, obreiros, classes de EBD e plano de contas.
 8. Decidir faixas de preço após 4 semanas de piloto.
