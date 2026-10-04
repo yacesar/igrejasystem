@@ -1,0 +1,204 @@
+/* =========================================================
+   MCA UI — tokens de design
+   Base neutra quente + cor da marca configurável por igreja
+   via --brand-h (matiz) e --brand-c (croma) em OKLCH.
+   ========================================================= */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Marca (padrão: azul profundo, sóbrio). A igreja sobrescreve --brand-h/--brand-c. */
+  --brand-h: 252;
+  --brand-c: 0.12;
+
+  --color-primary-50: oklch(0.97 0.015 var(--brand-h));
+  --color-primary-100: oklch(0.94 0.03 var(--brand-h));
+  --color-primary-200: oklch(0.88 0.06 var(--brand-h));
+  --color-primary-300: oklch(0.8 0.09 var(--brand-h));
+  --color-primary-400: oklch(0.7 0.11 var(--brand-h));
+  --color-primary-500: oklch(0.6 var(--brand-c) var(--brand-h));
+  --color-primary-600: oklch(0.52 var(--brand-c) var(--brand-h));
+  --color-primary-700: oklch(0.44 0.11 var(--brand-h));
+  --color-primary-800: oklch(0.36 0.09 var(--brand-h));
+  --color-primary-900: oklch(0.28 0.07 var(--brand-h));
+  --color-primary-950: oklch(0.2 0.05 var(--brand-h));
+
+  /* Neutros quentes */
+  --color-neutral-0: oklch(1 0 0);
+  --color-neutral-50: oklch(0.985 0.003 80);
+  --color-neutral-100: oklch(0.965 0.004 80);
+  --color-neutral-200: oklch(0.93 0.006 80);
+  --color-neutral-300: oklch(0.87 0.008 80);
+  --color-neutral-400: oklch(0.72 0.01 80);
+  --color-neutral-500: oklch(0.58 0.012 80);
+  --color-neutral-600: oklch(0.47 0.012 80);
+  --color-neutral-700: oklch(0.38 0.012 80);
+  --color-neutral-800: oklch(0.28 0.01 80);
+  --color-neutral-900: oklch(0.2 0.01 80);
+  --color-neutral-950: oklch(0.14 0.01 80);
+
+  /* Semânticas */
+  --color-success: oklch(0.6 0.14 150);
+  --color-success-soft: oklch(0.95 0.04 150);
+  --color-warning: oklch(0.72 0.15 75);
+  --color-warning-soft: oklch(0.96 0.05 80);
+  --color-danger: oklch(0.58 0.2 25);
+  --color-danger-soft: oklch(0.95 0.04 25);
+  --color-info: oklch(0.6 0.12 230);
+  --color-info-soft: oklch(0.95 0.03 230);
+
+  /* Superfícies e texto (tema claro) */
+  --bg: var(--color-neutral-50);
+  --bg-elevated: var(--color-neutral-0);
+  --bg-muted: var(--color-neutral-100);
+  --bg-sunken: var(--color-neutral-200);
+  --fg: var(--color-neutral-900);
+  --fg-muted: var(--color-neutral-600);
+  --fg-subtle: var(--color-neutral-500);
+  --border: var(--color-neutral-200);
+  --border-strong: var(--color-neutral-300);
+  --ring: var(--color-primary-500);
+  --primary: var(--color-primary-600);
+  --primary-hover: var(--color-primary-700);
+  --primary-fg: oklch(0.99 0 0);
+  --primary-soft: var(--color-primary-50);
+  --primary-soft-fg: var(--color-primary-800);
+
+  /* Forma e espaço */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.05);
+  --shadow-md: 0 4px 12px -2px oklch(0 0 0 / 0.08), 0 1px 3px oklch(0 0 0 / 0.04);
+  --shadow-lg: 0 16px 40px -8px oklch(0 0 0 / 0.14);
+
+  /* Toque mínimo e layout */
+  --touch: 44px;
+  --sidebar-w: 16rem;
+  --bottom-nav-h: 4rem;
+
+  color-scheme: light;
+}
+
+.dark {
+  --bg: var(--color-neutral-950);
+  --bg-elevated: var(--color-neutral-900);
+  --bg-muted: var(--color-neutral-800);
+  --bg-sunken: var(--color-neutral-900);
+  --fg: var(--color-neutral-50);
+  --fg-muted: var(--color-neutral-400);
+  --fg-subtle: var(--color-neutral-500);
+  --border: oklch(0.3 0.01 80);
+  --border-strong: oklch(0.38 0.01 80);
+  --primary: var(--color-primary-500);
+  --primary-hover: var(--color-primary-400);
+  --primary-soft: oklch(0.26 0.05 var(--brand-h));
+  --primary-soft-fg: var(--color-primary-200);
+  --color-success-soft: oklch(0.3 0.05 150);
+  --color-warning-soft: oklch(0.32 0.06 80);
+  --color-danger-soft: oklch(0.3 0.06 25);
+  --color-info-soft: oklch(0.3 0.05 230);
+  color-scheme: dark;
+}
+
+/* Modo "texto grande" para quem precisa */
+.text-lg-mode {
+  font-size: 112.5%;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-muted: var(--bg-muted);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-soft-fg: var(--primary-soft-fg);
+
+  --color-success: var(--color-success);
+  --color-success-soft: var(--color-success-soft);
+  --color-warning: var(--color-warning);
+  --color-warning-soft: var(--color-warning-soft);
+  --color-danger: var(--color-danger);
+  --color-danger-soft: var(--color-danger-soft);
+  --color-info: var(--color-info);
+  --color-info-soft: var(--color-info-soft);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  ::selection {
+    background: var(--primary-soft);
+    color: var(--primary-soft-fg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+  }
+  .touch-target {
+    min-height: var(--touch);
+    min-width: var(--touch);
+  }
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+  }
+}

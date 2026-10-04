@@ -19,29 +19,29 @@ Um sistema de gestão para igrejas que **cuida de pessoas, não só de cadastros
 
 ### Objetivos mensuráveis (12 meses após o lançamento)
 
-| Métrica | Meta |
-|---|---|
-| Tempo para uma igreja nova estar operando (cadastro → primeiro culto registrado) | < 1 hora |
-| Membros ativos no app por igreja (mensal) | > 40% da membresia |
-| Lançamentos financeiros conciliados automaticamente | > 80% |
-| Nota de satisfação (NPS) de secretários e tesoureiros | > 60 |
-| Tempo médio para gerar uma carta/declaração | < 30 segundos |
+| Métrica                                                                          | Meta               |
+| -------------------------------------------------------------------------------- | ------------------ |
+| Tempo para uma igreja nova estar operando (cadastro → primeiro culto registrado) | < 1 hora           |
+| Membros ativos no app por igreja (mensal)                                        | > 40% da membresia |
+| Lançamentos financeiros conciliados automaticamente                              | > 80%              |
+| Nota de satisfação (NPS) de secretários e tesoureiros                            | > 60               |
+| Tempo médio para gerar uma carta/declaração                                      | < 30 segundos      |
 
 ---
 
 ## 2. Público e personas
 
-| Persona | Contexto | O que precisa | Dor atual |
-|---|---|---|---|
-| **Pastor** | Lidera, prega, cuida; pouco tempo em tela | Visão da saúde da igreja, quem precisa de visita, planejamento de pregação | Sabe das ausências tarde demais; sermões espalhados em pastas |
-| **Secretária(o)** | Usuário mais frequente; frequentemente voluntária | Cadastro rápido, documentos prontos, agenda, comunicação | Retrabalho em Word/Excel, sistema lento e feio |
-| **Tesoureiro(a)** | Responsabilidade legal; prestação de contas | Conciliação PIX, centros de custo, relatórios para assembleia e contador | Planilhas, comprovantes no WhatsApp, fechamento manual |
-| **Líder de ministério** | Louvor, infantil, recepção, mídia | Escalas, confirmação de voluntários, repertório | Grupos de WhatsApp caóticos, trocas não registradas |
-| **Líder de célula / pequeno grupo** | Reunião semanal em casa | Relatório em 1 minuto, lista de presença, pedidos de oração | Esquece de reportar; planilha do supervisor |
-| **Professor(a) de EBD / discipulador** | Ensina classes ou acompanha 1:1 | Plano de aula, material, presença e progresso dos alunos | Nenhum sistema atende; usa PDF e caderno |
-| **Membro** | Usa no celular, no domingo | Agenda, ofertas, inscrições, conteúdo, pedidos de oração, sua ficha | App genérico que não abre, ou não existe |
-| **Visitante** | Primeiro contato | Dizer "estive aqui", receber acolhimento | Cartão de papel que ninguém lê |
-| **Contador externo** | Terceiro setor | Exportação organizada | Recebe caixa de sapato digital |
+| Persona                                | Contexto                                          | O que precisa                                                              | Dor atual                                                     |
+| -------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Pastor**                             | Lidera, prega, cuida; pouco tempo em tela         | Visão da saúde da igreja, quem precisa de visita, planejamento de pregação | Sabe das ausências tarde demais; sermões espalhados em pastas |
+| **Secretária(o)**                      | Usuário mais frequente; frequentemente voluntária | Cadastro rápido, documentos prontos, agenda, comunicação                   | Retrabalho em Word/Excel, sistema lento e feio                |
+| **Tesoureiro(a)**                      | Responsabilidade legal; prestação de contas       | Conciliação PIX, centros de custo, relatórios para assembleia e contador   | Planilhas, comprovantes no WhatsApp, fechamento manual        |
+| **Líder de ministério**                | Louvor, infantil, recepção, mídia                 | Escalas, confirmação de voluntários, repertório                            | Grupos de WhatsApp caóticos, trocas não registradas           |
+| **Líder de célula / pequeno grupo**    | Reunião semanal em casa                           | Relatório em 1 minuto, lista de presença, pedidos de oração                | Esquece de reportar; planilha do supervisor                   |
+| **Professor(a) de EBD / discipulador** | Ensina classes ou acompanha 1:1                   | Plano de aula, material, presença e progresso dos alunos                   | Nenhum sistema atende; usa PDF e caderno                      |
+| **Membro**                             | Usa no celular, no domingo                        | Agenda, ofertas, inscrições, conteúdo, pedidos de oração, sua ficha        | App genérico que não abre, ou não existe                      |
+| **Visitante**                          | Primeiro contato                                  | Dizer "estive aqui", receber acolhimento                                   | Cartão de papel que ninguém lê                                |
+| **Contador externo**                   | Terceiro setor                                    | Exportação organizada                                                      | Recebe caixa de sapato digital                                |
 
 ---
 
@@ -51,19 +51,19 @@ O controle de acesso é **por papel + por escopo** (igreja/campus/ministério/c�
 
 ### Papéis base
 
-| Papel | Escopo | Resumo de acesso |
-|---|---|---|
-| `super_admin` | Plataforma (SaaS) | Tenants, planos, suporte, auditoria global. Nunca lê dados pastorais. |
-| `admin_igreja` | Igreja (todos os campi) | Tudo da igreja, configurações, convites, papéis |
-| `pastor` | Igreja ou campus | Tudo exceto configurações de plano; acesso a notas pastorais confidenciais |
-| `secretaria` | Igreja ou campus | Pessoas, documentos, agenda, comunicação; **sem** finanças nem notas pastorais |
-| `tesouraria` | Igreja ou campus | Finanças completas; pessoas somente leitura (para vincular contribuintes) |
-| `lider_ministerio` | Ministério | Escalas, voluntários do ministério, comunicação segmentada |
-| `lider_celula` | Célula | Membros da célula, relatório, presença, pedidos de oração |
-| `professor` | Classe/trilha | Alunos, aulas, presença, avaliações |
-| `voluntario` | Ministério | Própria escala, trocas, disponibilidade |
-| `membro` | Próprio perfil | Perfil, família, ofertas próprias, inscrições, conteúdo |
-| `visitante` | Próprio perfil | Perfil mínimo, agenda pública, formulário de contato |
+| Papel              | Escopo                  | Resumo de acesso                                                               |
+| ------------------ | ----------------------- | ------------------------------------------------------------------------------ |
+| `super_admin`      | Plataforma (SaaS)       | Tenants, planos, suporte, auditoria global. Nunca lê dados pastorais.          |
+| `admin_igreja`     | Igreja (todos os campi) | Tudo da igreja, configurações, convites, papéis                                |
+| `pastor`           | Igreja ou campus        | Tudo exceto configurações de plano; acesso a notas pastorais confidenciais     |
+| `secretaria`       | Igreja ou campus        | Pessoas, documentos, agenda, comunicação; **sem** finanças nem notas pastorais |
+| `tesouraria`       | Igreja ou campus        | Finanças completas; pessoas somente leitura (para vincular contribuintes)      |
+| `lider_ministerio` | Ministério              | Escalas, voluntários do ministério, comunicação segmentada                     |
+| `lider_celula`     | Célula                  | Membros da célula, relatório, presença, pedidos de oração                      |
+| `professor`        | Classe/trilha           | Alunos, aulas, presença, avaliações                                            |
+| `voluntario`       | Ministério              | Própria escala, trocas, disponibilidade                                        |
+| `membro`           | Próprio perfil          | Perfil, família, ofertas próprias, inscrições, conteúdo                        |
+| `visitante`        | Próprio perfil          | Perfil mínimo, agenda pública, formulário de contato                           |
 
 ### Princípios
 
@@ -81,6 +81,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 ### 4.1 Núcleo
 
 #### Pessoas
+
 - Cadastro completo com **famílias/unidades familiares** (responsável, cônjuge, filhos, dependentes).
 - **Histórico eclesiástico**: conversão, batismo, recepção por transferência/aclamação, cargos, transferência de saída, disciplina (restrito), falecimento.
 - Status de vínculo: visitante → frequentador → membro → inativo/transferido, com data e motivo.
@@ -91,6 +92,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Linha do tempo por pessoa: tudo que aconteceu (presença, doações, visitas, documentos emitidos, mensagens).
 
 #### Secretaria e documentos
+
 - Emissão em 1 clique: carta de transferência/recomendação, certificado de batismo, declaração de membro, certificado de apresentação de criança, certificado de casamento religioso, credencial de obreiro.
 - Modelos editáveis com variáveis (`{{nome}}`, `{{data_batismo}}`) e identidade visual da igreja.
 - Assinatura digital do pastor (imagem + hash de verificação via QR code no documento).
@@ -98,6 +100,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Agenda institucional (cultos, reuniões, uso de salas) com reserva de espaços.
 
 #### Finanças
+
 - Lançamentos de entrada (dízimos, ofertas, campanhas, eventos, aluguéis, doações em espécie) e saída, com **centros de custo por ministério/campus** e categorias de plano de contas pré-configurado para igrejas.
 - **PIX dinâmico com conciliação automática**: cada contribuinte identificado tem QR próprio; o webhook do banco/PSP lança e vincula sozinho.
 - Contas bancárias, caixa físico, cartões; transferências entre contas.
@@ -110,12 +113,14 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Patrimônio: bens, depreciação simples, responsável, manutenção.
 
 #### Cultos, presença e visitantes
+
 - Registro de cultos (série, pregador, texto, música, presença total, decisões, batismos).
 - **Check-in** por QR code, NFC, autoatendimento em tablet ou manual.
 - **Check-in infantil seguro**: etiqueta impressa com código do responsável, alergias e observações; retirada só com o código.
 - Cartão de visitante digital (QR no banner) → fluxo de acolhimento automático (boas-vindas, atribuição a um integrador, lembrete de contato em 48h).
 
 #### Comunicação
+
 - Mensagens por segmento (lista inteligente) via **WhatsApp oficial (API)**, push, e-mail e SMS.
 - Modelos com variáveis, agendamento, e janelas de silêncio (não enviar 22h–7h).
 - Confirmação de leitura e relatório de entrega.
@@ -125,6 +130,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 ### 4.2 Vida da igreja
 
 #### Ministérios e escalas
+
 - Ministérios com funções (ex.: Louvor → vocal, teclado, bateria; Infantil → berçário, maternal).
 - Montagem de escala por **arrastar e soltar** com sugestão automática (disponibilidade, rodízio justo, bloqueios).
 - Voluntário confirma/recusa pelo celular; **troca entre voluntários** sem passar pelo líder (com notificação).
@@ -132,6 +138,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Repertório e ordem de culto para o louvor (cifras, tom, links), com histórico de músicas tocadas.
 
 #### Células / pequenos grupos
+
 - Rede → supervisão → célula; multiplicação com histórico (árvore genealógica das células).
 - **Relatório semanal em 60 segundos**: presença por toque, visitantes, decisões, ofertas, pedidos.
 - Mapa de células e membros (geolocalização) para sugerir célula mais próxima ao visitante.
@@ -139,6 +146,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Material de estudo da semana distribuído pelo sistema.
 
 #### Ensino e discipulado (**diferencial central**)
+
 - **Escola Bíblica (EBD)**: classes por faixa/turma, matrícula, presença, plano de aulas, materiais, avaliações opcionais.
 - **Trilhas de discipulado**: percursos (ex.: "Novos convertidos → Batismo → Membresia → Liderança") com etapas, conteúdo, encontros 1:1 e marcos; o pastor vê onde cada pessoa está.
 - Biblioteca de conteúdo: aulas, PDFs, vídeos, áudios, com controle de acesso por trilha/classe.
@@ -147,6 +155,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Painel de formação: quantos % da membresia passaram por cada etapa.
 
 #### Pregação (**diferencial**)
+
 - **Planejamento de séries** em calendário (texto, tema, pregador, status: ideia → em preparo → pronto → pregado).
 - Mapa de textos já pregados (por livro bíblico) para equilíbrio canônico ao longo dos anos.
 - Arquivo de sermões com manuscrito, áudio/vídeo, slides e esboço; busca por texto bíblico e tema.
@@ -154,6 +163,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Compartilhamento do sermão com a congregação via app (notas pessoais do membro vinculadas).
 
 #### Cuidado pastoral (**diferencial**)
+
 - **Radar de cuidado**: alertas automáticos — membro ausente há N semanas, aniversário, luto, nascimento, internação registrada, mudança de status, dízimo interrompido (sinal visível só para pastor, nunca para cobrança).
 - Visitas e aconselhamento: agendamento, registro confidencial, acompanhamento, próximos passos.
 - Fila de acolhimento de visitantes com responsável e prazos.
@@ -161,6 +171,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Registro de ocorrências sensíveis com acesso restrito e log de leitura (quem viu, quando).
 
 #### Eventos e inscrições
+
 - Criação de evento com ingressos (gratuitos/pagos), lotes, cupons, limite de vagas, lista de espera, formulário personalizado.
 - Pagamento via PIX/cartão e recibo; inscrição pelo app ou link público (sem precisar de conta).
 - Check-in no evento por QR; crachá imprimível.
@@ -168,6 +179,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - Pós-evento: pesquisa de satisfação e integração automática à base de pessoas.
 
 #### Site e app da igreja
+
 - Site público gerado a partir dos dados (cultos, eventos, séries de pregação, células, doações, formulário de contato), com domínio próprio e temas.
 - **App white-label**: PWA instalável com nome, ícone e cores da igreja; publicação opcional nas lojas (build único por igreja).
 - Transmissão ao vivo (YouTube/Vimeo embutido) com presença online e oferta integrada.
@@ -189,23 +201,23 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 
 Avaliamos soluções nacionais (gestão de membros + dízimo, geralmente com UX datada) e internacionais (Planning Center, Breeze, Tithe.ly, Subsplash, Pushpay: fortes, mas em inglês, com pagamento em dólar e sem PIX nativo). Em geral, as lacunas recorrentes são:
 
-| Lacuna comum no mercado | Nossa resposta |
-|---|---|
-| Interface antiga, desktop-first, muitos cliques | Mobile-first, design system próprio, fluxos de 1–3 toques, modo escuro, acessibilidade |
-| Nenhum módulo sério de **ensino/discipulado** | EBD + trilhas + biblioteca + Bíblia integrada + certificados |
-| Nada para o **pregador** | Planejamento de séries, mapa canônico, arquivo de sermões, transcrição e materiais derivados |
-| Cuidado pastoral reativo | Radar de cuidado com alertas automáticos e registro confidencial auditado |
-| PIX manual (tesoureiro digita comprovante) | PIX dinâmico identificado com conciliação automática via webhook |
-| Escalas que dependem do líder para tudo | Troca entre voluntários self-service, sugestão automática de escala |
-| Check-in infantil inexistente ou pago à parte | Check-in seguro com etiqueta e código do responsável no núcleo |
-| WhatsApp "integrado" via link ou gambiarra | API oficial, segmentação, modelos aprovados, relatório de entrega |
-| Sem funcionamento offline | PWA offline-first: presença, relatório de célula e check-in funcionam sem internet e sincronizam depois |
-| Relatórios rígidos | Listas inteligentes, filtros salvos, exportação em qualquer tela, painel público de transparência |
-| Multi-campus caro ou inexistente | Multi-campus nativo, consolidado por denominação |
-| LGPD tratada como rodapé | Consentimento granular, exportação/exclusão por pessoa, segregação de dados sensíveis, log de leitura |
-| Aprisionamento de dados | Exportação total a qualquer momento, API pública |
-| Onboarding longo e dependente de suporte | Assistente de configuração em 7 passos + importação guiada, igreja operando em < 1 hora |
-| Para idosos é difícil | Modo "texto grande", alto contraste, ícones com rótulo, linguagem simples |
+| Lacuna comum no mercado                         | Nossa resposta                                                                                          |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Interface antiga, desktop-first, muitos cliques | Mobile-first, design system próprio, fluxos de 1–3 toques, modo escuro, acessibilidade                  |
+| Nenhum módulo sério de **ensino/discipulado**   | EBD + trilhas + biblioteca + Bíblia integrada + certificados                                            |
+| Nada para o **pregador**                        | Planejamento de séries, mapa canônico, arquivo de sermões, transcrição e materiais derivados            |
+| Cuidado pastoral reativo                        | Radar de cuidado com alertas automáticos e registro confidencial auditado                               |
+| PIX manual (tesoureiro digita comprovante)      | PIX dinâmico identificado com conciliação automática via webhook                                        |
+| Escalas que dependem do líder para tudo         | Troca entre voluntários self-service, sugestão automática de escala                                     |
+| Check-in infantil inexistente ou pago à parte   | Check-in seguro com etiqueta e código do responsável no núcleo                                          |
+| WhatsApp "integrado" via link ou gambiarra      | API oficial, segmentação, modelos aprovados, relatório de entrega                                       |
+| Sem funcionamento offline                       | PWA offline-first: presença, relatório de célula e check-in funcionam sem internet e sincronizam depois |
+| Relatórios rígidos                              | Listas inteligentes, filtros salvos, exportação em qualquer tela, painel público de transparência       |
+| Multi-campus caro ou inexistente                | Multi-campus nativo, consolidado por denominação                                                        |
+| LGPD tratada como rodapé                        | Consentimento granular, exportação/exclusão por pessoa, segregação de dados sensíveis, log de leitura   |
+| Aprisionamento de dados                         | Exportação total a qualquer momento, API pública                                                        |
+| Onboarding longo e dependente de suporte        | Assistente de configuração em 7 passos + importação guiada, igreja operando em < 1 hora                 |
+| Para idosos é difícil                           | Modo "texto grande", alto contraste, ícones com rótulo, linguagem simples                               |
 
 ---
 
@@ -234,15 +246,15 @@ Avaliamos soluções nacionais (gestão de membros + dízimo, geralmente com UX 
 
 ### 6.3 Fluxos-chave que precisam ser perfeitos (medidos em toques)
 
-| Fluxo | Meta |
-|---|---|
-| Registrar presença de uma célula | ≤ 60 s, ≤ 15 toques |
-| Cadastrar um visitante no domingo | ≤ 30 s |
-| Lançar uma oferta em dinheiro do culto | ≤ 20 s |
-| Emitir uma carta de transferência | 3 cliques |
-| Confirmar escala pelo voluntário | 1 toque na notificação |
-| Membro doar via PIX | 2 toques + leitura do QR |
-| Trocar escala com outro voluntário | ≤ 4 toques |
+| Fluxo                                  | Meta                     |
+| -------------------------------------- | ------------------------ |
+| Registrar presença de uma célula       | ≤ 60 s, ≤ 15 toques      |
+| Cadastrar um visitante no domingo      | ≤ 30 s                   |
+| Lançar uma oferta em dinheiro do culto | ≤ 20 s                   |
+| Emitir uma carta de transferência      | 3 cliques                |
+| Confirmar escala pelo voluntário       | 1 toque na notificação   |
+| Membro doar via PIX                    | 2 toques + leitura do QR |
+| Trocar escala com outro voluntário     | ≤ 4 toques               |
 
 ### 6.4 Onboarding da igreja (7 passos)
 
@@ -262,35 +274,35 @@ Cada passo é opcional e retomável; um checklist de "primeiros 30 dias" acompan
 
 ### 7.1 Decisões
 
-| Camada | Escolha | Justificativa |
-|---|---|---|
-| Linguagem | **TypeScript** ponta a ponta | Um só vocabulário, tipos compartilhados entre web, API e mobile |
-| Monorepo | **pnpm workspaces + Turborepo** | Pacotes compartilhados (`ui`, `db`, `validators`, `config`) com build incremental |
-| Web | **Next.js 15 (App Router) + React 19** | SSR/streaming, Server Actions, excelente no Vercel, PWA via `serwist` |
-| Estilo | **Tailwind CSS v4 + shadcn/ui + Radix** | Produtividade, acessibilidade, tokens via CSS variables |
-| Estado/dados no cliente | **TanStack Query** + Zustand (pouco) | Cache, otimismo, sincronização offline |
-| Formulários | **react-hook-form + zod** | Validação única compartilhada com o backend |
-| API | **tRPC** (interna) + **Hono** (API pública REST/webhooks) | Tipagem de ponta a ponta sem código gerado; REST onde terceiros precisam |
-| Banco | **PostgreSQL via Supabase** (decidido) | Maturidade, RLS para multi-tenant, extensões (`pg_trgm` busca, `postgis` geolocalização); Auth, Storage e Realtime na mesma plataforma |
-| ORM | **Drizzle ORM** | SQL-first, migrações legíveis, leve em serverless |
-| Autenticação | **Supabase Auth** (decidido) | E-mail/senha, link mágico, Google/Apple, MFA, gestão de sessão; integração nativa com RLS |
-| Arquivos | **Supabase Storage** (S3 compatível) | Fotos, documentos, áudios; URLs assinadas; Cloudflare R2 apenas se o custo de egress justificar |
-| Jobs e filas | **Inngest** (ou Trigger.dev) | Lembretes, radar de cuidado, transcrições, envios em massa, retries |
-| Cache/tempo real | **Supabase Realtime** + Upstash Redis | Presença ao vivo no culto, escalas atualizando, rate limiting |
-| Pagamentos/PIX | **Asaas** (decidido): PIX dinâmico com identificação do pagador, boleto, cartão, assinaturas, split e subcontas por congregação, webhooks | PSP brasileiro com API madura, subcontas (white-label) para que cada igreja receba na própria conta e split nativo para sede/congregações |
-| WhatsApp | **Meta WhatsApp Cloud API** (oficial) | Modelos aprovados, entrega confiável, sem risco de banimento |
-| E-mail | **Resend** + React Email | Transacionais com templates em React |
-| Push | **Web Push (VAPID)** + FCM/OneSignal para apps nativos | PWA primeiro |
-| Transcrição/IA | **Whisper (via API)** para áudio; **Claude** para resumos, redação e assistente com ferramentas restritas por permissão | Qualidade em português; IA sempre com revisão humana |
-| Mapas/geocodificação | **MapLibre + OpenStreetMap/Nominatim** (ou Google Maps se orçamento) | Mapa de células e membros |
-| PDF | **@react-pdf/renderer** ou HTML → PDF via Playwright | Documentos e recibos com identidade visual |
-| Busca | Postgres `pg_trgm` + `tsvector`; Meilisearch se escalar | Busca de pessoas tolerante a erro de digitação |
-| Mobile nativo (fase 2) | **Expo (React Native)** reutilizando `validators`, `api-client` e tokens de design | Lojas quando o PWA não bastar (push no iOS antigo, NFC) |
-| Testes | **Vitest** (unidade), **Playwright** (E2E), Testing Library | Pirâmide de testes com E2E nos fluxos-chave |
-| Qualidade | ESLint, Prettier, TypeScript estrito, Husky + lint-staged, Changesets | Padrão desde o primeiro commit |
-| CI/CD | **GitHub Actions** → **Vercel** (web) + migrações automatizadas | Preview por PR, deploy contínuo |
-| Observabilidade | **Sentry** (erros), **PostHog** (produto, self-host opcional), Axiom/Better Stack (logs) | Saber o que quebra e o que é usado |
-| Infra como código | Terraform/Pulumi para recursos fora do Vercel (banco, buckets, DNS) | Reprodutibilidade |
+| Camada                  | Escolha                                                                                                                                   | Justificativa                                                                                                                             |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Linguagem               | **TypeScript** ponta a ponta                                                                                                              | Um só vocabulário, tipos compartilhados entre web, API e mobile                                                                           |
+| Monorepo                | **pnpm workspaces + Turborepo**                                                                                                           | Pacotes compartilhados (`ui`, `db`, `validators`, `config`) com build incremental                                                         |
+| Web                     | **Next.js 15 (App Router) + React 19**                                                                                                    | SSR/streaming, Server Actions, excelente no Vercel, PWA via `serwist`                                                                     |
+| Estilo                  | **Tailwind CSS v4 + shadcn/ui + Radix**                                                                                                   | Produtividade, acessibilidade, tokens via CSS variables                                                                                   |
+| Estado/dados no cliente | **TanStack Query** + Zustand (pouco)                                                                                                      | Cache, otimismo, sincronização offline                                                                                                    |
+| Formulários             | **react-hook-form + zod**                                                                                                                 | Validação única compartilhada com o backend                                                                                               |
+| API                     | **tRPC** (interna) + **Hono** (API pública REST/webhooks)                                                                                 | Tipagem de ponta a ponta sem código gerado; REST onde terceiros precisam                                                                  |
+| Banco                   | **PostgreSQL via Supabase** (decidido)                                                                                                    | Maturidade, RLS para multi-tenant, extensões (`pg_trgm` busca, `postgis` geolocalização); Auth, Storage e Realtime na mesma plataforma    |
+| ORM                     | **Drizzle ORM**                                                                                                                           | SQL-first, migrações legíveis, leve em serverless                                                                                         |
+| Autenticação            | **Supabase Auth** (decidido)                                                                                                              | E-mail/senha, link mágico, Google/Apple, MFA, gestão de sessão; integração nativa com RLS                                                 |
+| Arquivos                | **Supabase Storage** (S3 compatível)                                                                                                      | Fotos, documentos, áudios; URLs assinadas; Cloudflare R2 apenas se o custo de egress justificar                                           |
+| Jobs e filas            | **Inngest** (ou Trigger.dev)                                                                                                              | Lembretes, radar de cuidado, transcrições, envios em massa, retries                                                                       |
+| Cache/tempo real        | **Supabase Realtime** + Upstash Redis                                                                                                     | Presença ao vivo no culto, escalas atualizando, rate limiting                                                                             |
+| Pagamentos/PIX          | **Asaas** (decidido): PIX dinâmico com identificação do pagador, boleto, cartão, assinaturas, split e subcontas por congregação, webhooks | PSP brasileiro com API madura, subcontas (white-label) para que cada igreja receba na própria conta e split nativo para sede/congregações |
+| WhatsApp                | **Meta WhatsApp Cloud API** (oficial)                                                                                                     | Modelos aprovados, entrega confiável, sem risco de banimento                                                                              |
+| E-mail                  | **Resend** + React Email                                                                                                                  | Transacionais com templates em React                                                                                                      |
+| Push                    | **Web Push (VAPID)** + FCM/OneSignal para apps nativos                                                                                    | PWA primeiro                                                                                                                              |
+| Transcrição/IA          | **Whisper (via API)** para áudio; **Claude** para resumos, redação e assistente com ferramentas restritas por permissão                   | Qualidade em português; IA sempre com revisão humana                                                                                      |
+| Mapas/geocodificação    | **MapLibre + OpenStreetMap/Nominatim** (ou Google Maps se orçamento)                                                                      | Mapa de células e membros                                                                                                                 |
+| PDF                     | **@react-pdf/renderer** ou HTML → PDF via Playwright                                                                                      | Documentos e recibos com identidade visual                                                                                                |
+| Busca                   | Postgres `pg_trgm` + `tsvector`; Meilisearch se escalar                                                                                   | Busca de pessoas tolerante a erro de digitação                                                                                            |
+| Mobile nativo (fase 2)  | **Expo (React Native)** reutilizando `validators`, `api-client` e tokens de design                                                        | Lojas quando o PWA não bastar (push no iOS antigo, NFC)                                                                                   |
+| Testes                  | **Vitest** (unidade), **Playwright** (E2E), Testing Library                                                                               | Pirâmide de testes com E2E nos fluxos-chave                                                                                               |
+| Qualidade               | ESLint, Prettier, TypeScript estrito, Husky + lint-staged, Changesets                                                                     | Padrão desde o primeiro commit                                                                                                            |
+| CI/CD                   | **GitHub Actions** → **Vercel** (web) + migrações automatizadas                                                                           | Preview por PR, deploy contínuo                                                                                                           |
+| Observabilidade         | **Sentry** (erros), **PostHog** (produto, self-host opcional), Axiom/Better Stack (logs)                                                  | Saber o que quebra e o que é usado                                                                                                        |
+| Infra como código       | Terraform/Pulumi para recursos fora do Vercel (banco, buckets, DNS)                                                                       | Reprodutibilidade                                                                                                                         |
 
 ### 7.2 Arquitetura
 
@@ -409,12 +421,22 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 
 ## 11. Roadmap
 
-### Fase 0 — Fundação (semanas 1–3)
-- Monorepo, CI, design tokens, componentes base, autenticação, multi-tenant com RLS, onboarding mínimo.
-- Pessoas (cadastro, famílias, status, importação CSV).
-- Decidir PSP e abrir contas de sandbox (PIX, WhatsApp).
+### Fase 0 — Fundação (semanas 1–3) — **em andamento**
+
+- [x] Monorepo (pnpm + Turborepo), CI (lint, typecheck, migrações, testes de RLS, build).
+- [x] Design tokens (MCA UI) e componentes base; tema claro/escuro; shell responsivo.
+- [x] Autenticação Supabase (senha e link por e-mail), proxy de sessão.
+- [x] Multi-tenant: igreja → campi, papéis por escopo, RLS com testes de integração.
+- [x] Onboarding: cria igreja, sede, primeira congregação e administrador; preset por tradição.
+- [x] Pessoas: cadastro, edição, busca e filtros, situação, nº de rol, histórico eclesiástico (eventos restritos), arquivamento, auditoria.
+- [x] Ajustes: identidade, congregações, equipe.
+- [ ] Famílias (UI; o esquema já existe).
+- [ ] Importação assistida de CSV/Excel.
+- [ ] Convite de equipe por e-mail com papel e escopo.
+- [ ] Projeto Supabase e sandbox Asaas da ADEMAN criados e configurados.
 
 ### Fase 1 — MVP "Secretaria + Tesouraria que encantam" (semanas 4–10)
+
 - Documentos (cartas, certificados) com modelos.
 - Finanças: contas, lançamentos, categorias, centros de custo, PIX dinâmico conciliado, recibos, relatórios essenciais, fechamento mensal.
 - Cultos e presença (incluindo visitantes e fluxo de acolhimento).
@@ -424,6 +446,7 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 - **Piloto com a ADEMAN** (matriz + 1 congregação); em seguida, 2–4 igrejas adicionais de tamanhos e tradições diferentes.
 
 ### Fase 2 — Vida da igreja (semanas 11–18)
+
 - Ministérios e escalas com trocas.
 - Células com relatório offline e mapa.
 - Eventos com inscrição e pagamento.
@@ -432,12 +455,14 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 - Site público por igreja.
 
 ### Fase 3 — Ensino e pregação (semanas 19–26)
+
 - EBD, trilhas de discipulado, biblioteca de conteúdo, Bíblia integrada, certificados.
 - Planejamento de séries, mapa canônico, arquivo de sermões.
 - Transcrição e materiais derivados por IA com revisão.
 - Assistente de IA no painel.
 
 ### Fase 4 — Escala (semanas 27+)
+
 - Multi-campus/denominação consolidado.
 - Automações visuais, formulários, API pública, webhooks.
 - App nativo (Expo) nas lojas, white-label.
@@ -445,6 +470,7 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 - Marketplace de modelos (documentos, trilhas, materiais) entre igrejas.
 
 ### Critérios de saída do MVP
+
 - ADEMAN (matriz e congregação) usando semanalmente por 4 semanas, com relatório de EBD e tesouraria fechados pelo sistema.
 - 80% dos PIX conciliados sem toque humano.
 - Secretaria emite documentos sem suporte.
@@ -454,33 +480,34 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 
 ## 12. Riscos e mitigações
 
-| Risco | Mitigação |
-|---|---|
-| Escopo grande demais e nada fica excelente | Fases com critérios de saída; MVP focado em secretaria e tesouraria |
-| Igrejas pequenas com baixa alfabetização digital | Onboarding guiado, vocabulário configurável, modo texto grande, vídeos curtos de ajuda em cada tela |
-| Dependência de PSP/WhatsApp | Adaptadores por interface (`PaymentProvider`, `MessagingProvider`); troca sem tocar no domínio |
-| Dados sensíveis vazados | Segregação, criptografia, RLS, testes automatizados de permissão em todo PR |
-| Custo de IA | Uso sob demanda em planos superiores; cache de resultados; modelos pequenos para tarefas simples |
-| Resistência de tradições diferentes | Vocabulário e fluxos configuráveis; evitar impor eclesiologia na estrutura de dados |
-| Licença da ARA não sair a tempo ou custar caro | Texto de domínio público como fallback; arquitetura da Bíblia integrada independente da versão (múltiplas versões por tabela) |
+| Risco                                                          | Mitigação                                                                                                                       |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Escopo grande demais e nada fica excelente                     | Fases com critérios de saída; MVP focado em secretaria e tesouraria                                                             |
+| Igrejas pequenas com baixa alfabetização digital               | Onboarding guiado, vocabulário configurável, modo texto grande, vídeos curtos de ajuda em cada tela                             |
+| Dependência de PSP/WhatsApp                                    | Adaptadores por interface (`PaymentProvider`, `MessagingProvider`); troca sem tocar no domínio                                  |
+| Dados sensíveis vazados                                        | Segregação, criptografia, RLS, testes automatizados de permissão em todo PR                                                     |
+| Custo de IA                                                    | Uso sob demanda em planos superiores; cache de resultados; modelos pequenos para tarefas simples                                |
+| Resistência de tradições diferentes                            | Vocabulário e fluxos configuráveis; evitar impor eclesiologia na estrutura de dados                                             |
+| Licença da ARA não sair a tempo ou custar caro                 | Texto de domínio público como fallback; arquitetura da Bíblia integrada independente da versão (múltiplas versões por tabela)   |
 | Preset AD vazar para o núcleo e dificultar outras denominações | Revisão de arquitetura: tudo do preset vive em `packages/core/presets/assembleia-de-deus` e em dados, nunca em regra de domínio |
 
 ---
 
 ## 13. Decisões fundamentais (fechadas em 04/10/2026)
 
-| # | Decisão | Escolha | Observações |
-|---|---|---|---|
-| 1 | Nome e marca | **MCA Igrejas** | Registrar domínio e marca; o design system passa a se chamar "MCA UI" |
-| 2 | Plataforma de dados | **Supabase** (Postgres + Auth + Storage + Realtime) | Domínio desacoplado via `packages/core` e `packages/db` para permitir migração futura |
-| 3 | PSP (PIX, boleto, cartão) | **Asaas** | Subcontas por igreja/congregação, split sede ↔ congregações, webhooks assinados; sandbox desde a Fase 0 |
-| 4 | Versão bíblica | **Almeida Revista e Atualizada (ARA)** | Texto protegido por direitos autorais da SBB: **negociar licença de uso em software** antes da Fase 3. Até então, usar versão de domínio público como texto provisório |
-| 5 | Faixas de preço | **A definir** | Decidir após o piloto, com dados reais de uso e custo por igreja. Hipótese de trabalho na seção 10 |
-| 6 | Igreja piloto | **ADEMAN — Assembleia de Deus em Mangueiras** | Escopo inicial: **matriz + 1 congregação**. Ver seção 14 |
+| #   | Decisão                   | Escolha                                             | Observações                                                                                                                                                            |
+| --- | ------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Nome e marca              | **MCA Igrejas**                                     | Registrar domínio e marca; o design system passa a se chamar "MCA UI"                                                                                                  |
+| 2   | Plataforma de dados       | **Supabase** (Postgres + Auth + Storage + Realtime) | Domínio desacoplado via `packages/core` e `packages/db` para permitir migração futura                                                                                  |
+| 3   | PSP (PIX, boleto, cartão) | **Asaas**                                           | Subcontas por igreja/congregação, split sede ↔ congregações, webhooks assinados; sandbox desde a Fase 0                                                                |
+| 4   | Versão bíblica            | **Almeida Revista e Atualizada (ARA)**              | Texto protegido por direitos autorais da SBB: **negociar licença de uso em software** antes da Fase 3. Até então, usar versão de domínio público como texto provisório |
+| 5   | Preço                     | **Gratuito durante o piloto**                       | Sem cobrança para a ADEMAN enquanto durar a fase de testes. Faixas de preço definidas depois, com dados reais de uso e custo; hipótese de trabalho na seção 10         |
+| 6   | Igreja piloto             | **ADEMAN — Assembleia de Deus em Mangueiras**       | Escopo inicial: **matriz + 1 congregação**. Ver seção 14                                                                                                               |
 
 ### Decisões ainda abertas
-- Faixas de preço e política do plano gratuito (item 5).
-- Modelo de acordo do piloto com a ADEMAN (sugestão: uso gratuito por 6 meses em troca de feedback semanal).
+
+- Faixas de preço pós-piloto e política do plano gratuito permanente (item 5).
+- Formalização do acordo de piloto com a ADEMAN (uso gratuito em troca de feedback semanal).
 
 ---
 
@@ -490,26 +517,29 @@ A Assembleia de Deus (AD) é a maior denominação evangélica do Brasil e tem e
 
 ### 14.1 Estrutura eclesiástica
 
-| Conceito na AD | Como o sistema modela | Observação |
-|---|---|---|
-| **Ministério / Campo** (ex.: AD Ministério X, presidido por um pastor presidente) | `Church` (tenant) | Nível do contrato e da visão consolidada |
-| **Igreja sede** | `Campus` marcado como sede | Concentra tesouraria central e secretaria geral |
-| **Congregações** (dezenas ou centenas, cada uma com dirigente) | `Campus` filhos da sede, agrupáveis em **setores/áreas** | Hierarquia de 3 níveis: campo → setor → congregação |
-| **Pastor presidente, vice-presidente, pastores setoriais** | Papéis derivados de `pastor` com escopo (campo, setor, congregação) | Criados pelo preset |
-| **Dirigente de congregação** (pastor, evangelista ou presbítero) | Papel `dirigente` = `pastor` com escopo de um campus | Vê só sua congregação; sede vê tudo |
-| **Obreiros**: diácono, presbítero, evangelista, pastor; auxiliares, cooperadores | Cargos em `MembershipEvent` (consagração/ordenação, data, local) + credencial de obreiro | Documento "credencial" já previsto em Secretaria |
-| **Rol de membros** | Lista de pessoas com status `membro` por congregação, com número de rol | Impressão de rol e "cartão de membro" com QR |
-| **Disciplina** (afastamento, exclusão) e **reconciliação** | `MembershipEvent` restrito | Visível só para pastor/dirigente e secretaria geral |
-| **Convenção** (CGADB e convenções estaduais) | Campo de filiação no tenant + exportação de relatório anual | Relatórios estatísticos padronizados para a convenção |
+| Conceito na AD                                                                    | Como o sistema modela                                                                    | Observação                                            |
+| --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| **Ministério / Campo** (ex.: AD Ministério X, presidido por um pastor presidente) | `Church` (tenant)                                                                        | Nível do contrato e da visão consolidada              |
+| **Igreja sede**                                                                   | `Campus` marcado como sede                                                               | Concentra tesouraria central e secretaria geral       |
+| **Congregações** (dezenas ou centenas, cada uma com dirigente)                    | `Campus` filhos da sede, agrupáveis em **setores/áreas**                                 | Hierarquia de 3 níveis: campo → setor → congregação   |
+| **Pastor presidente, vice-presidente, pastores setoriais**                        | Papéis derivados de `pastor` com escopo (campo, setor, congregação)                      | Criados pelo preset                                   |
+| **Dirigente de congregação** (pastor, evangelista ou presbítero)                  | Papel `dirigente` = `pastor` com escopo de um campus                                     | Vê só sua congregação; sede vê tudo                   |
+| **Obreiros**: diácono, presbítero, evangelista, pastor; auxiliares, cooperadores  | Cargos em `MembershipEvent` (consagração/ordenação, data, local) + credencial de obreiro | Documento "credencial" já previsto em Secretaria      |
+| **Rol de membros**                                                                | Lista de pessoas com status `membro` por congregação, com número de rol                  | Impressão de rol e "cartão de membro" com QR          |
+| **Disciplina** (afastamento, exclusão) e **reconciliação**                        | `MembershipEvent` restrito                                                               | Visível só para pastor/dirigente e secretaria geral   |
+| **Convenção** (CGADB e convenções estaduais)                                      | Campo de filiação no tenant + exportação de relatório anual                              | Relatórios estatísticos padronizados para a convenção |
 
 ### 14.2 Vocabulário padrão do preset AD
+
 - "Congregação" (não "campus"); "Dirigente"; "Obreiro"; "Cooperador(a)"; "Auxiliar".
 - "Dízimos e ofertas", "Oferta missionária", "Círculo de oração", "Culto de doutrina", "Culto de ensino", "Santa Ceia".
 - "Departamentos" para ministérios internos (Mocidade/UMADEB-like, Senhoras, Varões, Crianças, Adolescentes, Louvor, Mídia).
 - "EBD" com classes por faixa e **trimestres**.
 
 ### 14.3 Escola Bíblica Dominical no centro
+
 A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com:
+
 - Estrutura **trimestral** de lições (13 lições por trimestre) com cadastro da revista em uso (ex.: CPAD) por classe e por trimestre.
 - Classes por faixa etária padrão (Berçário, Maternal, Jardim, Primários, Juniores, Pré-adolescentes, Adolescentes, Jovens, Adultos, Novos convertidos, Discipulado) editáveis.
 - **Relatório de EBD** por domingo: presentes, visitantes, Bíblias, revistas, ofertas, por classe e consolidado por congregação e campo.
@@ -517,6 +547,7 @@ A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com
 - Secretário(a) de EBD como papel específico (derivado de `professor` com escopo de congregação).
 
 ### 14.4 Finanças na AD
+
 - **Repasse congregação → sede** (percentual ou valor fixo) e prestação de contas por congregação: modelado com split do Asaas e com lançamento automático de repasse.
 - Dízimo de obreiros e cooperação de pastores: categorias pré-cadastradas.
 - Relatório mensal padrão de tesouraria da congregação para a sede (formato impresso e digital).
@@ -524,19 +555,20 @@ A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com
 
 ### 14.5 Igreja piloto: ADEMAN
 
-| Item | Definição |
-|---|---|
-| Igreja | **ADEMAN — Assembleia de Deus em Mangueiras** |
-| Escopo inicial | **Matriz (sede) + 1 congregação** |
-| Modelo no sistema | 1 `Church` (ADEMAN) · 2 `Campus` (matriz marcada como sede; congregação vinculada à matriz) · setores desativados nesta fase |
+| Item                 | Definição                                                                                                                                                                                                  |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Igreja               | **ADEMAN — Assembleia de Deus em Mangueiras**                                                                                                                                                              |
+| Escopo inicial       | **Matriz (sede) + 1 congregação**                                                                                                                                                                          |
+| Modelo no sistema    | 1 `Church` (ADEMAN) · 2 `Campus` (matriz marcada como sede; congregação vinculada à matriz) · setores desativados nesta fase                                                                               |
 | Papéis a provisionar | Pastor presidente (admin + pastor no campo), dirigente da congregação, secretaria geral, tesouraria geral, tesoureiro da congregação, secretário(a) de EBD por congregação, professores, obreiros, membros |
-| Finanças | Duas subcontas Asaas (matriz e congregação) ou uma conta com split; repasse congregação → matriz configurado em percentual |
-| Dados iniciais | Importar rol de membros (matriz e congregação), cargos de obreiros, classes de EBD e plano de contas atual |
-| Objetivo da fase | Validar os fluxos abaixo com dois níveis reais (sede ↔ congregação) antes de abrir para mais congregações |
+| Finanças             | Duas subcontas Asaas (matriz e congregação) ou uma conta com split; repasse congregação → matriz configurado em percentual                                                                                 |
+| Dados iniciais       | Importar rol de membros (matriz e congregação), cargos de obreiros, classes de EBD e plano de contas atual                                                                                                 |
+| Objetivo da fase     | Validar os fluxos abaixo com dois níveis reais (sede ↔ congregação) antes de abrir para mais congregações                                                                                                  |
 
 O escopo pequeno é intencional: dois campi já exercitam toda a hierarquia, as permissões por escopo e o repasse financeiro, sem o volume de uma rede grande. Novas congregações da ADEMAN entram como `Campus` adicionais sem mudança de código.
 
 ### 14.6 Fluxos que o piloto vai validar primeiro
+
 1. Cadastro do rol de membros e emissão de cartão de membro e carta de mudança (transferência entre congregações do mesmo campo e para outros ministérios).
 2. Relatório de EBD dominical pelo celular do secretário de classe.
 3. Dízimos e ofertas por PIX identificado na congregação, com repasse automático à sede.
@@ -545,6 +577,7 @@ O escopo pequeno é intencional: dois campi já exercitam toda a hierarquia, as 
 6. Relatório estatístico anual para a convenção.
 
 ### 14.7 Cuidados
+
 - Diversidade interna: ministérios diferentes da AD têm costumes diferentes (uso de instrumentos, vestuário, estrutura de departamentos). Nada disso vai para o código; tudo é configuração.
 - Grande parte dos dirigentes de congregação tem pouco tempo e usa só o celular: o fluxo do dirigente (presença, oferta, relatório de EBD, pedido de oração) tem de caber inteiro na barra inferior do app.
 - Linguagem e imagética do produto devem ser sóbrias e respeitosas, evitando estética "startup" que soe estranha ao público.

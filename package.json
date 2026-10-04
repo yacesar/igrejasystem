@@ -1,0 +1,27 @@
+{
+  "name": "mca-igrejas",
+  "private": true,
+  "version": "0.0.1",
+  "description": "MCA Igrejas — sistema de gestão para igrejas que cuida de pessoas, não só de cadastros.",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,css,mjs,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json,css,mjs,yml,yaml}\"",
+    "db:generate": "pnpm --filter @mca/db generate",
+    "db:migrate": "pnpm --filter @mca/db migrate",
+    "db:seed": "pnpm --filter @mca/db seed"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9",
+    "turbo": "^2.11.7",
+    "typescript": "^5.9.3"
+  }
+}

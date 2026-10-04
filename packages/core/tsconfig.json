@@ -1,0 +1,4 @@
+{
+  "extends": "@mca/config/tsconfig.library.json",
+  "include": ["src/**/*.ts"]
+}

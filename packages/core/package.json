@@ -1,0 +1,23 @@
+{
+  "name": "@mca/core",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./presets": "./src/presets/index.ts",
+    "./auth": "./src/auth/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@mca/validators": "workspace:*"
+  },
+  "devDependencies": {
+    "@mca/config": "workspace:*",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}

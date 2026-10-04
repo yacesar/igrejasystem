@@ -1,0 +1,45 @@
+import type { Preset } from "./types";
+
+export const generico: Preset = {
+  id: "generico",
+  label: "Igreja (padrão)",
+  description: "Vocabulário neutro para igrejas de qualquer tradição.",
+  vocabulary: {
+    church: "Igreja",
+    campus: "Campus",
+    campusPlural: "Campi",
+    sede: "Sede",
+    campusLeader: "Pastor local",
+    member: "Membro",
+    memberPlural: "Membros",
+    memberRoll: "Lista de membros",
+    smallGroup: "Pequeno grupo",
+    smallGroupPlural: "Pequenos grupos",
+    ministry: "Ministério",
+    ministryPlural: "Ministérios",
+    tithe: "Dízimo",
+    offering: "Oferta",
+    sundaySchool: "Escola Bíblica",
+    worker: "Líder",
+    workerPlural: "Líderes",
+  },
+  offices: [
+    { key: "diacono", label: "Diácono / Diaconisa", order: 1 },
+    { key: "presbitero", label: "Presbítero", order: 2 },
+    { key: "pastor", label: "Pastor", order: 3 },
+  ],
+  sundaySchoolClasses: [
+    { key: "criancas", label: "Crianças", ageMin: 0, ageMax: 11 },
+    { key: "adolescentes", label: "Adolescentes", ageMin: 12, ageMax: 17 },
+    { key: "jovens", label: "Jovens", ageMin: 18, ageMax: 30 },
+    { key: "adultos", label: "Adultos", ageMin: 31 },
+  ],
+  ministries: ["Louvor", "Crianças", "Jovens", "Recepção", "Mídia"],
+  serviceTypes: ["Culto", "Escola Bíblica", "Oração", "Santa Ceia"],
+  financeCategories: [
+    { key: "dizimos", label: "Dízimos", kind: "entrada" },
+    { key: "ofertas", label: "Ofertas", kind: "entrada" },
+    { key: "campanhas", label: "Campanhas", kind: "entrada" },
+    { key: "despesas_gerais", label: "Despesas gerais", kind: "saida" },
+  ],
+};
