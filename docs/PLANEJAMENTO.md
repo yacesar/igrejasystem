@@ -1,6 +1,7 @@
-# IgrejaSystem — Documento de Planejamento
+# MCA Igrejas — Documento de Planejamento
 
-> Versão 0.1 · 04/10/2026 · Documento vivo: toda decisão de produto, design e arquitetura começa aqui.
+> Versão 0.2 · 04/10/2026 · Documento vivo: toda decisão de produto, design e arquitetura começa aqui.
+> Decisões fundamentais fechadas em 04/10/2026 (ver seção 13).
 
 ---
 
@@ -141,7 +142,7 @@ Organizado em **Núcleo** (toda igreja usa desde o dia 1), **Vida da igreja** (m
 - **Escola Bíblica (EBD)**: classes por faixa/turma, matrícula, presença, plano de aulas, materiais, avaliações opcionais.
 - **Trilhas de discipulado**: percursos (ex.: "Novos convertidos → Batismo → Membresia → Liderança") com etapas, conteúdo, encontros 1:1 e marcos; o pastor vê onde cada pessoa está.
 - Biblioteca de conteúdo: aulas, PDFs, vídeos, áudios, com controle de acesso por trilha/classe.
-- **Bíblia integrada** (textos em português de domínio público/licenciados + referências) com busca por referência e vinculação a aulas e sermões.
+- **Bíblia integrada** na **Almeida Revista e Atualizada (ARA)**, licenciada junto à Sociedade Bíblica do Brasil (SBB), com busca por referência, vinculação a aulas e sermões e cópia com citação correta. Enquanto a licença não é assinada, o desenvolvimento usa uma versão de domínio público como texto provisório.
 - Certificados automáticos ao concluir trilha.
 - Painel de formação: quantos % da membresia passaram por cada etapa.
 
@@ -220,7 +221,7 @@ Avaliamos soluções nacionais (gestão de membros + dízimo, geralmente com UX 
 6. **Agradável.** Microinterações sutis, feedback imediato, tipografia que respira, ilustrações próprias nos estados vazios e no onboarding.
 7. **Acessível por padrão.** WCAG 2.2 AA, navegação por teclado, leitores de tela, contraste verificado, foco visível, tamanho mínimo de toque 44px.
 
-### 6.2 Design system ("Ágape UI", nome provisório)
+### 6.2 Design system ("MCA UI")
 
 - **Tipografia**: uma sans legível para interface (Inter ou Geist) e uma serifada discreta para títulos e conteúdo bíblico/devocional (Source Serif ou Fraunces), transmitindo seriedade sem frieza.
 - **Cores**: paleta neutra quente como base; cor primária configurável por igreja (gerada em escala 50–950 automaticamente com contraste garantido); semânticas fixas (sucesso, alerta, erro, informação). Modo claro e escuro de primeira classe.
@@ -246,7 +247,7 @@ Avaliamos soluções nacionais (gestão de membros + dízimo, geralmente com UX 
 ### 6.4 Onboarding da igreja (7 passos)
 
 1. Dados da igreja e logotipo (gera tema automaticamente a partir da cor do logo).
-2. Vocabulário (célula/PG; dízimo/contribuição; etc.).
+2. Tradição e vocabulário: escolher um preset (ex.: **Assembleia de Deus**, Batista, Presbiteriana, Independente) que pré-carrega termos, cargos, classes de EBD e categorias financeiras; tudo editável depois.
 3. Campi e horários de culto.
 4. Importar pessoas (CSV/Excel) ou começar do zero.
 5. Conta bancária e PIX (conectar PSP).
@@ -270,13 +271,13 @@ Cada passo é opcional e retomável; um checklist de "primeiros 30 dias" acompan
 | Estado/dados no cliente | **TanStack Query** + Zustand (pouco) | Cache, otimismo, sincronização offline |
 | Formulários | **react-hook-form + zod** | Validação única compartilhada com o backend |
 | API | **tRPC** (interna) + **Hono** (API pública REST/webhooks) | Tipagem de ponta a ponta sem código gerado; REST onde terceiros precisam |
-| Banco | **PostgreSQL** (Supabase ou Neon) | Maturidade, RLS para multi-tenant, extensões (`pg_trgm` busca, `postgis` geolocalização) |
+| Banco | **PostgreSQL via Supabase** (decidido) | Maturidade, RLS para multi-tenant, extensões (`pg_trgm` busca, `postgis` geolocalização); Auth, Storage e Realtime na mesma plataforma |
 | ORM | **Drizzle ORM** | SQL-first, migrações legíveis, leve em serverless |
-| Autenticação | **Supabase Auth** (ou Auth.js como alternativa) | E-mail/senha, link mágico, Google/Apple, MFA, gestão de sessão; integração nativa com RLS |
-| Arquivos | **Supabase Storage / S3 compatível** + Cloudflare R2 | Fotos, documentos, áudios; URLs assinadas |
+| Autenticação | **Supabase Auth** (decidido) | E-mail/senha, link mágico, Google/Apple, MFA, gestão de sessão; integração nativa com RLS |
+| Arquivos | **Supabase Storage** (S3 compatível) | Fotos, documentos, áudios; URLs assinadas; Cloudflare R2 apenas se o custo de egress justificar |
 | Jobs e filas | **Inngest** (ou Trigger.dev) | Lembretes, radar de cuidado, transcrições, envios em massa, retries |
 | Cache/tempo real | **Supabase Realtime** + Upstash Redis | Presença ao vivo no culto, escalas atualizando, rate limiting |
-| Pagamentos/PIX | **Asaas** ou **Pagar.me** (PIX dinâmico, boleto, cartão, webhooks); Stripe como opção para cartão internacional | PSPs brasileiros com PIX identificado e split para multi-campus |
+| Pagamentos/PIX | **Asaas** (decidido): PIX dinâmico com identificação do pagador, boleto, cartão, assinaturas, split e subcontas por congregação, webhooks | PSP brasileiro com API madura, subcontas (white-label) para que cada igreja receba na própria conta e split nativo para sede/congregações |
 | WhatsApp | **Meta WhatsApp Cloud API** (oficial) | Modelos aprovados, entrega confiável, sem risco de banimento |
 | E-mail | **Resend** + React Email | Transacionais com templates em React |
 | Push | **Web Push (VAPID)** + FCM/OneSignal para apps nativos | PWA primeiro |
@@ -328,7 +329,7 @@ Cada passo é opcional e retomável; um checklist de "primeiros 30 dias" acompan
 ### 7.3 Estrutura do repositório
 
 ```
-igrejasystem/
+mca-igrejas/
 ├── apps/
 │   ├── web/              # Next.js (painel + app do membro + site público)
 │   ├── api/              # Hono: API pública e webhooks (PSP, WhatsApp)
@@ -461,25 +462,89 @@ Convenções: UUID v7 como chave, `created_at/updated_at/deleted_at` (soft delet
 | Dados sensíveis vazados | Segregação, criptografia, RLS, testes automatizados de permissão em todo PR |
 | Custo de IA | Uso sob demanda em planos superiores; cache de resultados; modelos pequenos para tarefas simples |
 | Resistência de tradições diferentes | Vocabulário e fluxos configuráveis; evitar impor eclesiologia na estrutura de dados |
+| Licença da ARA não sair a tempo ou custar caro | Texto de domínio público como fallback; arquitetura da Bíblia integrada independente da versão (múltiplas versões por tabela) |
+| Preset AD vazar para o núcleo e dificultar outras denominações | Revisão de arquitetura: tudo do preset vive em `packages/core/presets/assembleia-de-deus` e em dados, nunca em regra de domínio |
 
 ---
 
-## 13. Decisões em aberto (a resolver antes da Fase 0)
+## 13. Decisões fundamentais (fechadas em 04/10/2026)
 
-1. **Nome e marca** do produto (IgrejaSystem é provisório).
-2. **Supabase vs. Neon + Auth.js** — Supabase acelera Auth/Storage/Realtime; Neon dá Postgres puro com menos acoplamento. Recomendação inicial: **Supabase**, mantendo o domínio desacoplado para migrar se necessário.
-3. **PSP**: Asaas vs. Pagar.me vs. Mercado Pago — comparar taxas de PIX, qualidade do webhook e split para multi-campus.
-4. **Versões da Bíblia** a embarcar: domínio público (ex.: Almeida Revista e Corrigida 1969 em certas edições, Tradução Brasileira) e negociação de licença para versões modernas.
-5. **Faixas de preço** e política do plano gratuito.
-6. **Igrejas piloto**: quais, de que tradições e tamanhos.
+| # | Decisão | Escolha | Observações |
+|---|---|---|---|
+| 1 | Nome e marca | **MCA Igrejas** | Registrar domínio e marca; o design system passa a se chamar "MCA UI" |
+| 2 | Plataforma de dados | **Supabase** (Postgres + Auth + Storage + Realtime) | Domínio desacoplado via `packages/core` e `packages/db` para permitir migração futura |
+| 3 | PSP (PIX, boleto, cartão) | **Asaas** | Subcontas por igreja/congregação, split sede ↔ congregações, webhooks assinados; sandbox desde a Fase 0 |
+| 4 | Versão bíblica | **Almeida Revista e Atualizada (ARA)** | Texto protegido por direitos autorais da SBB: **negociar licença de uso em software** antes da Fase 3. Até então, usar versão de domínio público como texto provisório |
+| 5 | Faixas de preço | **A definir** | Decidir após o piloto, com dados reais de uso e custo por igreja. Hipótese de trabalho na seção 10 |
+| 6 | Igrejas piloto | **Assembleia de Deus** | Ver seção 14: implicações de vocabulário, estrutura e fluxos |
+
+### Decisões ainda abertas
+- Faixas de preço e política do plano gratuito (item 5).
+- Qual(is) ministério(s)/campo(s) da Assembleia de Deus participará(ão) do piloto, e quantas congregações.
+- Modelo de contrato para o piloto (gratuito por 6 meses em troca de feedback semanal é a sugestão).
 
 ---
 
-## 14. Próximos passos imediatos
+## 14. Contexto do piloto: Assembleia de Deus
 
-1. Validar este documento e fechar as decisões em aberto da seção 13.
+A Assembleia de Deus (AD) é a maior denominação evangélica do Brasil e tem estrutura e vocabulário próprios. O sistema precisa falar essa língua **sem engessar** outras tradições: tudo abaixo é implementado como **vocabulário configurável e modelos pré-carregados** ("Preset Assembleia de Deus"), não como regra fixa no código.
+
+### 14.1 Estrutura eclesiástica
+
+| Conceito na AD | Como o sistema modela | Observação |
+|---|---|---|
+| **Ministério / Campo** (ex.: AD Ministério X, presidido por um pastor presidente) | `Church` (tenant) | Nível do contrato e da visão consolidada |
+| **Igreja sede** | `Campus` marcado como sede | Concentra tesouraria central e secretaria geral |
+| **Congregações** (dezenas ou centenas, cada uma com dirigente) | `Campus` filhos da sede, agrupáveis em **setores/áreas** | Hierarquia de 3 níveis: campo → setor → congregação |
+| **Pastor presidente, vice-presidente, pastores setoriais** | Papéis derivados de `pastor` com escopo (campo, setor, congregação) | Criados pelo preset |
+| **Dirigente de congregação** (pastor, evangelista ou presbítero) | Papel `dirigente` = `pastor` com escopo de um campus | Vê só sua congregação; sede vê tudo |
+| **Obreiros**: diácono, presbítero, evangelista, pastor; auxiliares, cooperadores | Cargos em `MembershipEvent` (consagração/ordenação, data, local) + credencial de obreiro | Documento "credencial" já previsto em Secretaria |
+| **Rol de membros** | Lista de pessoas com status `membro` por congregação, com número de rol | Impressão de rol e "cartão de membro" com QR |
+| **Disciplina** (afastamento, exclusão) e **reconciliação** | `MembershipEvent` restrito | Visível só para pastor/dirigente e secretaria geral |
+| **Convenção** (CGADB e convenções estaduais) | Campo de filiação no tenant + exportação de relatório anual | Relatórios estatísticos padronizados para a convenção |
+
+### 14.2 Vocabulário padrão do preset AD
+- "Congregação" (não "campus"); "Dirigente"; "Obreiro"; "Cooperador(a)"; "Auxiliar".
+- "Dízimos e ofertas", "Oferta missionária", "Círculo de oração", "Culto de doutrina", "Culto de ensino", "Santa Ceia".
+- "Departamentos" para ministérios internos (Mocidade/UMADEB-like, Senhoras, Varões, Crianças, Adolescentes, Louvor, Mídia).
+- "EBD" com classes por faixa e **trimestres**.
+
+### 14.3 Escola Bíblica Dominical no centro
+A EBD é uma das instituições mais fortes da AD. O módulo de ensino nasce com:
+- Estrutura **trimestral** de lições (13 lições por trimestre) com cadastro da revista em uso (ex.: CPAD) por classe e por trimestre.
+- Classes por faixa etária padrão (Berçário, Maternal, Jardim, Primários, Juniores, Pré-adolescentes, Adolescentes, Jovens, Adultos, Novos convertidos, Discipulado) editáveis.
+- **Relatório de EBD** por domingo: presentes, visitantes, Bíblias, revistas, ofertas, por classe e consolidado por congregação e campo.
+- Painel de EBD no nível do campo: frequência por congregação, classes sem professor, crescimento trimestral.
+- Secretário(a) de EBD como papel específico (derivado de `professor` com escopo de congregação).
+
+### 14.4 Finanças na AD
+- **Repasse congregação → sede** (percentual ou valor fixo) e prestação de contas por congregação: modelado com split do Asaas e com lançamento automático de repasse.
+- Dízimo de obreiros e cooperação de pastores: categorias pré-cadastradas.
+- Relatório mensal padrão de tesouraria da congregação para a sede (formato impresso e digital).
+- Campanhas comuns pré-criadas: construção, missões, congressos de departamentos.
+
+### 14.5 Fluxos que o piloto vai validar primeiro
+1. Cadastro do rol de membros e emissão de cartão de membro e carta de mudança (transferência entre congregações do mesmo campo e para outros ministérios).
+2. Relatório de EBD dominical pelo celular do secretário de classe.
+3. Dízimos e ofertas por PIX identificado na congregação, com repasse automático à sede.
+4. Consagração/ordenação de obreiros e credencial com QR.
+5. Escala de dirigentes de culto e de louvor.
+6. Relatório estatístico anual para a convenção.
+
+### 14.6 Cuidados
+- Diversidade interna: ministérios diferentes da AD têm costumes diferentes (uso de instrumentos, vestuário, estrutura de departamentos). Nada disso vai para o código; tudo é configuração.
+- Grande parte dos dirigentes de congregação tem pouco tempo e usa só o celular: o fluxo do dirigente (presença, oferta, relatório de EBD, pedido de oração) tem de caber inteiro na barra inferior do app.
+- Linguagem e imagética do produto devem ser sóbrias e respeitosas, evitando estética "startup" que soe estranha ao público.
+
+---
+
+## 15. Próximos passos imediatos
+
+1. Registrar domínio e marca "MCA Igrejas"; definir logotipo e paleta base do MCA UI.
 2. Criar o monorepo com a estrutura da seção 7.3, CI e design tokens.
-3. Desenhar os fluxos-chave da seção 6.3 (wireframes mobile primeiro).
-4. Modelar e migrar o esquema de **Pessoas** e **Finanças** (base do MVP).
-5. Abrir sandbox do PSP e da WhatsApp Cloud API.
-6. Recrutar igrejas piloto.
+3. Criar projeto Supabase (dev) e conta sandbox Asaas; configurar webhooks assinados.
+4. Iniciar contato com a SBB para licença da ARA em software.
+5. Desenhar os fluxos-chave da seção 6.3 e os seis fluxos do piloto (14.5), mobile primeiro.
+6. Modelar e migrar o esquema de **Pessoas** (com hierarquia campo → setor → congregação) e **Finanças** (com repasse).
+7. Definir o ministério/campo da Assembleia de Deus para o piloto, número de congregações e termos do acordo.
+8. Decidir faixas de preço após 4 semanas de piloto.
